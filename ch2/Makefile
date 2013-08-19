@@ -1,5 +1,5 @@
 all: ex2_1
-	./ex2_1 10000 +RTS -p > /dev/null
+	./ex2_1 10000 +RTS -p
 ex2_1: ex2_1.hs
 	ghc -prof -fprof-auto -rtsopts ex2_1.hs
 clean:

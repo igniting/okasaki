@@ -1,8 +1,7 @@
 import System.Environment
 
 -- Function to return list of all suffixes of a list
--- This is O(n^2) as confirmed by profiling
-
+-- This function is O(n), confirmed by profiling
 suffixList :: [a] -> [[a]]
 suffixList [] = [[]]
 suffixList l@(_:xs) = l:suffixList xs
@@ -13,5 +12,6 @@ main = do
     then putStrLn "One argument required."
     else do
       let l = suffixList [1..n] where n = read $ head args :: Int
-      putStrLn $ show l
+      -- This is a workaround to have value of l calculated
+      putStrLn $ show $ length l
       putStrLn "Suffix List Calculated."
