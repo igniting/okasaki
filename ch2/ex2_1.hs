@@ -1,17 +1,14 @@
-import System.Environment
+import Criterion.Main
 
 -- Function to return list of all suffixes of a list
 -- This function is O(n), confirmed by profiling
-suffixList :: [a] -> [[a]]
+suffixList :: [Int] -> [[Int]]
 suffixList [] = [[]]
 suffixList l@(_:xs) = l:suffixList xs
 
-main = do
-  args <- getArgs
-  if length args /= 1
-    then putStrLn "One argument required."
-    else do
-      let l = suffixList [1..n] where n = read $ head args :: Int
-      -- This is a workaround to have value of l calculated
-      putStrLn $ show $ length l
-      putStrLn "Suffix List Calculated."
+main = defaultMain [
+        bgroup "suffixList" [
+          bench "suffixList [1..100]" $ nf suffixList [1..100]
+        , bench "suffixList [1..1000]" $ nf suffixList [1..1000]
+        ]
+      ]
